@@ -25,11 +25,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>greenfoot</groupId>
-      <artifactId>greenfoot</artifactId>
-      <version>3.6.1</version>
-      <scope>system</scope>
-      <systemPath>${basedir}/lib/greenfoot.jar</systemPath>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx</artifactId>
+      <version>15</version>
+      <type>pom</type>
     </dependency>
     <dependency>
       <groupId>com.github.rccookie</groupId>
@@ -45,6 +44,11 @@
       <groupId>com.github.rccookie</groupId>
       <artifactId>util</artifactId>
       <version>1.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.rccookie</groupId>
+      <artifactId>greenfoot-source</artifactId>
+      <version>3.6.1</version>
     </dependency>
   </dependencies>
 
