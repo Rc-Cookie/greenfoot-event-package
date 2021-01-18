@@ -6,7 +6,7 @@
 
   <groupId>com.github.rccookie</groupId>
   <artifactId>greenfoot-event</artifactId>
-  <version>1.0</version>
+  <version>1.0.0.1</version>
 
   <name>greenfoot-event</name>
   <!-- FIXME change it to the project's website -->
@@ -64,6 +64,17 @@
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
+          <configuration>
+            <resources>
+              <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                  <include>**/*.java</include>
+                  <include>**/*.gwt.xml</include>
+                </includes>
+              </resource>
+            </resources>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
