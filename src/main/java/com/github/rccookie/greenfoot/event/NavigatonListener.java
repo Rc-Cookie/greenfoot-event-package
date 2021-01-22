@@ -22,14 +22,14 @@ public class NavigatonListener {
     private List<Consumer<String>> naviListeners = new ArrayList<>();
 
     public NavigatonListener() {
-        up.addListener(key -> onClick(key));
-        up.addReleaseListener(key -> onRelease());
-        down.addListener(key -> onClick(key));
-        down.addReleaseListener(key -> onRelease());
-        left.addListener(key -> onClick(key));
-        left.addReleaseListener(key -> onRelease());
-        right.addListener(key -> onClick(key));
-        right.addReleaseListener(key -> onRelease());
+        up.addListener(() -> onClick("up"));
+        up.addReleaseListener(() -> onRelease());
+        down.addListener(() -> onClick("down"));
+        down.addReleaseListener(() -> onRelease());
+        left.addListener(() -> onClick("left"));
+        left.addReleaseListener(() -> onRelease());
+        right.addListener(() -> onClick("right"));
+        right.addReleaseListener(() -> onRelease());
     }
 
 

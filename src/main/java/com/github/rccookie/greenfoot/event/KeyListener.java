@@ -2,7 +2,6 @@ package com.github.rccookie.greenfoot.event;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
-import java.util.function.Consumer;
 
 import com.github.rccookie.common.event.Time;
 
@@ -21,8 +20,8 @@ public class KeyListener implements EventListener {
     private double timeSinceLastPress;
     private Time time = new Time();
 
-    private List<Consumer<String>> listeners = new ArrayList<Consumer<String>>();
-    private List<Consumer<String>> releaseListeners = new ArrayList<Consumer<String>>();
+    private List<Runnable> listeners = new ArrayList<Runnable>();
+    private List<Runnable> releaseListeners = new ArrayList<Runnable>();
 
     public KeyListener(String key){
         this.key = key;
@@ -82,27 +81,29 @@ public class KeyListener implements EventListener {
 
 
     private void onPress() {
-        for(Consumer<String> listener : listeners) listener.accept(key);
+        for(Runnable listener : listeners) listener.run();
     }
 
     private void onRelease() {
-        for(Consumer<String> listener : releaseListeners) listener.accept(key);
+        for(Runnable listener : releaseListeners) listener.run();
     }
 
 
-    public void addListener(Consumer<String> listener) {
+    public KeyListener addListener(Runnable listener) {
         listeners.add(listener);
+        return this;
     }
 
-    public void removeListener(Consumer<String> listener) {
+    public void removeListener(Runnable listener) {
         listeners.remove(listener);
     }
 
-    public void addReleaseListener(Consumer<String> listener) {
+    public KeyListener addReleaseListener(Runnable listener) {
         releaseListeners.add(listener);
+        return this;
     }
 
-    public void removeReleaseListener(Consumer<String> listener) {
+    public void removeReleaseListener(Runnable listener) {
         releaseListeners.remove(listener);
     }
 }
