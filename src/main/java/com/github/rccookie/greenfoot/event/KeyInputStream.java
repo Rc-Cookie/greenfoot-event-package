@@ -1,6 +1,7 @@
 package com.github.rccookie.greenfoot.event;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +24,17 @@ public class KeyInputStream extends InputStream {
      */
     public KeyInputStream(int capacity) {
         this(capacity, Collections.emptyList());
+    }
+
+    /**
+     * Creates a new KeyInputStream with the given capacity
+     * and the specified keys to listen for.
+     * 
+     * @param capacity The capacity of the InputStream
+     * @param keys The keys to listen for
+     */
+    public KeyInputStream(int capacity, String... keys) {
+        this(capacity, Arrays.asList(keys));
     }
 
     /**
