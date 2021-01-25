@@ -4,8 +4,9 @@ import java.util.EventListener;
 import java.util.List;
 
 import com.github.rccookie.common.event.Time;
+import com.github.rccookie.common.util.Updatable;
 
-public class KeyListener implements EventListener {
+public class KeyListener implements EventListener, Updatable {
 
     private static final long MIN_MULTICLICK_DELAY = 500;
     private static final double MULTICLICK_DELAY = 0.02;
@@ -28,6 +29,7 @@ public class KeyListener implements EventListener {
         update();
     }
 
+    @Override
     public void update() {
         boolean temp = down;
         down = Input.keyState(key);
