@@ -156,8 +156,8 @@ public final class LoginManager {
      * Trys to reset the <b>currently on Greenfoot logged in</b> user's password for
      * the account system.
      * 
-     * @param password0 The password for the account
-     * @param password1 The password for the account, repeated
+     * @param password0 The new password
+     * @param password1 The new password, repeated
      * @return {@code true} if the password was definetly saved. {@code false}
      *         however does not neccecarily mean that the registery failed, it
      *         only means that {@link UserInfo#store()} returned {@code false}
