@@ -2,7 +2,6 @@ package com.github.rccookie.greenfoot.event;
 
 import com.github.rccookie.greenfoot.event.LoginManager.InternalPasswordChangeException;
 import com.github.rccookie.greenfoot.event.LoginManager.LoginException;
-import com.github.rccookie.greenfoot.event.LoginManager.UserState;
 
 /**
  * Represents an effective login page using {@link LoginManager}.
@@ -18,15 +17,6 @@ public class LoginPage {
      * Creates a new login page.
      */
     public LoginPage() { }
-
-     /**
-     * Returns the current state of the on greenfoot logged in user.
-     * 
-     * @return The greenfoot user's state
-     */
-    public UserState getUserState() {
-        return manager.getUserState();
-    }
 
     /**
      * Trys to register the currently on Greenfoot logged in user for the

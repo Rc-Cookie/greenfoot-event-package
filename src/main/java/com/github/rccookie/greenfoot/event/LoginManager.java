@@ -1,6 +1,7 @@
 package com.github.rccookie.greenfoot.event;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * The login manager handles user accounts. If allowes users to create an
@@ -17,10 +18,7 @@ public final class LoginManager {
      */
     public static final int MIN_PASSWORD_LENGTH = 6, MAX_PASSWORD_LENGTH = 30;
 
-    /**
-     * State of the current greenfoot user.
-     */
-    private UserState state;
+
 
     /**
      * Weather there is currently someone logged in.
@@ -39,11 +37,7 @@ public final class LoginManager {
     /**
      * Creates a new LoginManager with no user logged in by default.
      */
-    public LoginManager() {
-        User.current().ifPresentOrElse(u -> {
-            state = getPasswordData(u) != 0 ? UserState.REGISTERED : UserState.CAN_REGISTER;
-        }, () -> state = UserState.GUEST);
-    }
+    public LoginManager() { }
 
 
 
@@ -143,10 +137,9 @@ public final class LoginManager {
     public boolean register(String password0, String password1) throws LoginException, InternalPasswordChangeException {
         User user = User.current().orElseThrow(() -> new NullPointerException("Can only register if the user is logged in on Greenfoot"));
 
-        if(state != UserState.CAN_REGISTER) throw new AlreadyRegisteredException(user);
+        if(getUserState() != UserState.CAN_REGISTER) throw new AlreadyRegisteredException(user);
 
         boolean saveSuccess = setPassword(password0, password1);
-        state = UserState.REGISTERED;
         return saveSuccess;
     }
 
@@ -172,7 +165,7 @@ public final class LoginManager {
     public boolean resetPassword(String password0, String password1) throws LoginException, InternalPasswordChangeException {
         User user = User.current().orElseThrow(() -> new NullPointerException("Can only reset password if the user is logged in on Greenfoot"));
 
-        if(state != UserState.REGISTERED) throw new NotRegisteredException(user);
+        if(getUserState() != UserState.REGISTERED) throw new NotRegisteredException(user);
 
         return setPassword(password0, password1);
     }
@@ -251,8 +244,10 @@ public final class LoginManager {
      * 
      * @return The greenfoot user's state
      */
-    public UserState getUserState() {
-        return state;
+    public static UserState getUserState() {
+        final Optional<User> current = User.current();
+        if(current.isPresent()) return getPasswordData(current.get()) != 0 ? UserState.REGISTERED : UserState.CAN_REGISTER;
+        return UserState.GUEST;
     }
 
 

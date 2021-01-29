@@ -2,7 +2,6 @@ package com.github.rccookie.greenfoot.event;
 
 import com.github.rccookie.greenfoot.event.LoginManager.InternalPasswordChangeException;
 import com.github.rccookie.greenfoot.event.LoginManager.LoginException;
-import com.github.rccookie.greenfoot.event.LoginManager.UserState;
 
 /**
  * Represents the login state of a logged in user using {@link LoginManager}.
@@ -30,15 +29,6 @@ public class LoggedInUser {
      */
     public User getUser() {
         return login.manager.getUser();
-    }
-
-     /**
-     * Returns the current state of the on greenfoot logged in user.
-     * 
-     * @return The greenfoot user's state
-     */
-    public UserState getUserState() {
-        return login.manager.getUserState();
     }
 
     /**
