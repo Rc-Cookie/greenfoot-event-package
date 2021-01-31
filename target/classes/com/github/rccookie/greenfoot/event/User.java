@@ -183,19 +183,29 @@ public class User {
      * Stores any changes to the server.
      * <p>If this user is marked as virtual, this method will simply return {@code true}
      * and not store anything. Otherwise, you can only store the user that is returned by
-     * {@link #get()}, otherwise an exception will be thrown.
+     * {@link #get()}, otherwise {@code false} will be returned.
      * 
      * @return {@code true} indicates that the store was successful, however {@code false}
      *         does not neccecarily mean the store failed, the UserInfo class is not very
      *         reliable here
-     * @throws NoAccessException If this user does not belong to the current Greenfoot user
      */
     public boolean store() {
         if(isVirtual() || !modified) return true;
-        if(!Objects.equals(getName(), GreenfootUtil.getUserName())) throw new NoAccessException(this);
+        if(!Objects.equals(getName(), GreenfootUtil.getUserName())) return false;
         boolean success = userInfo.store();
         modified = false;
         return success;
+    }
+
+    /**
+     * Indicates weather storing any modified data using {@link #store()} should work. If
+     * this returns {@code false} storing will definetly have no effect. This can happen
+     * if the user is virtual or not the current Greenfoot user's user object.
+     * 
+     * @return Weather storing using {@link #store()} will work.
+     */
+    public boolean storingWorks() {
+        return !isVirtual() && Objects.equals(getName(), GreenfootUtil.getUserName());
     }
 
     @Override
@@ -324,19 +334,5 @@ public class User {
      */
     public static User findOrCreate(String name) {
         return find(name).orElseGet(() -> create(name, -1));
-    }
-
-
-
-    /**
-     * Indicates that an attempt was made to store the user data of a different user.
-     */
-    public class NoAccessException extends RuntimeException {
-
-        private static final long serialVersionUID = 934524858409260705L;
-
-        public NoAccessException(User user) {
-            super("Tried to store user data for user " + user.getName() + " from account of the user " + GreenfootUtil.getUserName());
-        }
     }
 }
