@@ -5,10 +5,10 @@ import java.util.EventListener;
 import java.util.List;
 
 import com.github.rccookie.common.event.Time;
-import com.github.rccookie.common.util.Updatable;
+import com.github.rccookie.common.util.Updateable;
 import com.github.rccookie.greenfoot.core.KeyState;
 
-public class KeyListener implements EventListener, Updatable {
+public class KeyListener implements EventListener, Updateable {
 
     private static final long MIN_MULTICLICK_DELAY = 500;
     private static final double MULTICLICK_DELAY = 0.02;
@@ -34,7 +34,7 @@ public class KeyListener implements EventListener, Updatable {
     @Override
     public void update() {
         boolean temp = down;
-        down = KeyState.of(key).pressed;
+        down = KeyState.of(key).down;
         if(temp != down) {
             pressed = down;
             released = !down;
