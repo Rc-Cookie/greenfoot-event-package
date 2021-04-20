@@ -3,9 +3,10 @@ package com.github.rccookie.greenfoot.event;
 import greenfoot.Actor;
 import greenfoot.Greenfoot;
 import greenfoot.MouseInfo;
-import com.github.rccookie.common.geometry.Vector2D;
-import com.github.rccookie.common.util.Cache;
-import com.github.rccookie.common.util.CachedItem;
+
+import com.github.rccookie.util.Cache;
+import com.github.rccookie.util.CachedItem;
+import com.github.rccookie.geometry.Vector2D;
 
 @Deprecated
 public abstract class Input {

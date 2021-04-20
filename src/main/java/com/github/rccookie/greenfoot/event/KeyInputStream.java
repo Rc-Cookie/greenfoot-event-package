@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import com.github.rccookie.common.event.InputStream;
+import com.github.rccookie.event.InputStream;
 
 /**
  * An InputStream of key strings that automatically checks

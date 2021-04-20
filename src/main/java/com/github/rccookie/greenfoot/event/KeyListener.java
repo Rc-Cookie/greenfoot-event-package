@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
-import com.github.rccookie.common.event.Time;
-import com.github.rccookie.common.util.Updateable;
+import com.github.rccookie.event.Time;
+import com.github.rccookie.util.Updateable;
 import com.github.rccookie.greenfoot.core.KeyState;
 
 public class KeyListener implements EventListener, Updateable {
